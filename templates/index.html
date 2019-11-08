@@ -6,5 +6,8 @@
 </head>
 <body>
     <h1>-Map Project Sandbox-</h1>
+    {% for school in schools %}
+		<p><a href="/schools/{{ school.LOC_CODE }}">{{ school.SCHOOLNAME }}</a></p>
+	{% endfor %}
 </body>
 </html>

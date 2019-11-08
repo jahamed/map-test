@@ -31,11 +31,16 @@ def homepage():
 	school = School.query.filter_by(LOC_CODE='X270').first()
 	print("School's name is", school.SCHOOLNAME)
 
-	zip_schools = School.query.filter_by(ZIP='10466').all()
-	for zip_school in zip_schools:
-  		print(zip_school.SCHOOLNAME)
+	schools = School.query.filter_by(ZIP='10466').all()
+	for school in schools:
+  		print(school.SCHOOLNAME)
 
-	return render_template("index.html")
+	return render_template("index.html", schools=schools)
+
+@app.route("/schools/<slug>")
+def detail(slug):
+	school = School.query.filter_by(LOC_CODE=slug).first()
+	return render_template("detail.html", school=school)
 
 if __name__ == '__main__':
 	app.run(debug=True, port=5000)
